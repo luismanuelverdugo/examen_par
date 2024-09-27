@@ -1,0 +1,35 @@
+-- Examen: Taller de base de datos
+
+-- crear un usuario con el nombre de tu equipo
+-- por ejemplo uequipo01 para ejecutar el script con las tablas
+-- y crear sus procesos almacenados, funciones y vistas
+
+create table ad_dependencias(
+  id_depend number(3) primary key,
+  dependencia varchar2(128)
+);
+
+create table ad_proveedores(
+  id_proveedor number(5) primary key,
+  proveedor varchar2(254),
+  actividad varchar2(2048),
+  domicilio varchar2(254),
+  telefono varchar2(32),
+  correo varchar2(128),
+);
+
+create table ad_facturas(
+  id_factura number(10) primary key,
+  oficio varchar2(64),
+  requisicion varchar2(64),
+  contrato varchar2(128),
+  factura varchar2(64),
+  uuid varchar2(64),
+  subtotal number(13,2),
+  iva number(13,2),
+  total number(13,2),
+  fecha date,
+  fechai date,
+  id_proveedor number(5) REFERENCES ad_proveedores(id_proveedor),
+  id_depend number(3) REFERENCES ad_dependencias(id_depend)
+);
